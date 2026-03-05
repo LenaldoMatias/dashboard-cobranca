@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Indicadores | Cobrança</title>
+    <style>
+        :root {
+            --sidebar-width: 240px;
+            --primary-color: #f2c94c; /* Amarelo Power BI */
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Menu Lateral */
+        nav.sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: #000;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-right: 1px solid #333;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            padding: 12px 0;
+            color: #bbb;
+            text-decoration: none;
+            transition: 0.3s;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-item:hover {
+            color: var(--primary-color);
+        }
+
+        /* Conteúdo Principal */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-content {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 30px;
+        }
+
+        /* Container do Iframe (Responsivo) */
+        .dashboard-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            background: #252525;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.7);
+        }
+
+        .responsive-iframe {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* Proporção 16:9 */
+        }
+
+        .responsive-iframe iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Badge de Status */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #27ae60;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">BI Analytics</div>
+        <a href="#" class="nav-item">🏠 Início</a>
+        <a href="#" class="nav-item">📉 Cobrança</a>
+        <a href="#" class="nav-item">💰 Financeiro</a>
+        <a href="#" class="nav-item">⚙️ Configurações</a>
+    </nav>
+
+    <main>
+        <div class="header-content">
+            <h1>Indicadores de Cobrança</h1>
+            <p style="color: #888; margin-top: -10px;">Monitoramento em tempo real dos fluxos de recebíveis</p>
+            <span class="status-badge">● LIVE - Atualizado</span>
+        </div>
+
+        <div class="dashboard-wrapper">
+            <div class="responsive-iframe">
+                <iframe 
+                    src="https://app.powerbi.com/groups/me/reports/8cac4ed2-27ac-4672-9e87-512db2eea94f/2258d170895803dc04c2?language=pt-BR&experience=power-bi&clientSideAuth=0" 
+                    allowFullScreen="true">
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
