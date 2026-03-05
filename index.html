@@ -1,153 +1,188 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Indicadores | Cobrança</title>
-    <style>
-        :root {
-            --sidebar-width: 240px;
-            --primary-color: #f2c94c; /* Amarelo Power BI */
-            --bg-dark: #121212;
-            --card-bg: #1e1e1e;
-        }
+    <title>Prestek Telecom | Portal Analytics</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: #e0e0e0;
-            margin: 0;
-            display: flex;
-        }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF6600',
+                            navy: '#004892',
+                            bg: '#F4F6F8',
+                        },
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                },
+            },
+        };
+    </script>
 
-        /* Menu Lateral */
-        nav.sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
+    <style type="text/css">
+        body { font-family: 'Inter', sans-serif; background-color: #F4F6F8; }
+        
+        .sidebar {
+            width: 260px;
             background-color: #000;
+            height: 100vh;
             position: fixed;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            border-right: 1px solid #333;
-            z-index: 100;
-        }
-
-        .logo {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            text-transform: uppercase;
+            transition: all 0.3s;
         }
 
         .nav-item {
-            padding: 12px 0;
-            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #94a3b8;
             text-decoration: none;
-            transition: 0.3s;
-            border-bottom: 1px solid #222;
+            transition: 0.2s;
+            border-left: 4px solid transparent;
         }
 
-        .nav-item:hover {
-            color: var(--primary-color);
+        .nav-item:hover, .nav-item.active {
+            background: #111;
+            color: #FF6600;
+            border-left: 4px solid #FF6600;
         }
 
-        /* Conteúdo Principal */
-        main {
-            margin-left: var(--sidebar-width);
-            flex-grow: 1;
-            padding: 40px;
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
         }
 
-        .header-content {
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 30px;
-        }
-
-        /* Container do Iframe (Responsivo) */
-        .dashboard-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            background: #252525;
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.7);
-        }
-
-        .responsive-iframe {
-            position: relative;
+        /* Container do Power BI */
+        .dashboard-container {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 72, 146, 0.1);
             overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
             width: 100%;
-            padding-top: 56.25%; /* Proporção 16:9 */
         }
 
-        .responsive-iframe iframe {
+        .dashboard-container iframe {
             position: absolute;
             top: 0;
             left: 0;
-            bottom: 0;
-            right: 0;
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 4px;
         }
 
-        /* Badge de Status */
-        .status-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            background: #27ae60;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 10px;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* Ajuste para telas menores */
-        @media (max-width: 768px) {
-            nav.sidebar { width: 60px; padding: 10px; }
-            .logo, .nav-item { font-size: 0; text-align: center; }
-            .nav-item::before { content: "•"; font-size: 20px; color: var(--primary-color); }
-            main { margin-left: 60px; padding: 20px; }
+        @media (max-width: 1024px) {
+            .sidebar { width: 70px; }
+            .sidebar span:not(.material-symbols-outlined) { display: none; }
+            .main-content { margin-left: 70px; width: calc(100% - 70px); }
+            .logo-text { display: none; }
         }
     </style>
 </head>
-<body>
 
-    <nav class="sidebar">
-        <div class="logo">BI Analytics</div>
-        <a href="#" class="nav-item">🏠 Início</a>
-        <a href="#" class="nav-item">📉 Cobrança</a>
-        <a href="#" class="nav-item">💰 Financeiro</a>
-        <a href="#" class="nav-item">⚙️ Configurações</a>
-    </nav>
+<body class="text-slate-800">
 
-    <main>
-        <div class="header-content">
-            <h1>Indicadores BI</h1>
-            <h2 style="font-weight: 300; color: var(--primary-color); margin-top: -10px;">Cobrança Inadimplência e Bloqueados</h2>
-            <p style="color: #888;">Monitoramento em tempo real dos fluxos de recebíveis</p>
-            <span class="status-badge">● LIVE - Autenticado</span>
+    <nav class="sidebar flex flex-col py-6">
+        <div class="px-6 mb-10 flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand-orange text-3xl">wifi_tethering</span>
+            <div class="logo-text flex flex-col">
+                <span class="text-white font-bold tracking-tighter text-lg leading-none">PRESTEK</span>
+                <span class="text-brand-orange text-[9px] font-black tracking-[0.2em] leading-none mt-1">TELECOM</span>
+            </div>
         </div>
 
-        <div class="dashboard-wrapper">
-            <div class="responsive-iframe">
+        <div class="flex flex-col flex-grow">
+            <a href="#" class="nav-item active">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard Geral</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="material-symbols-outlined">payments</span>
+                <span>Inadimplência</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="material-symbols-outlined">lock</span>
+                <span>Bloqueados</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="material-symbols-outlined">settings</span>
+                <span>Configurações</span>
+            </a>
+        </div>
+
+        <div class="px-6 mt-auto">
+            <div class="bg-zinc-900 rounded-lg p-3 text-center">
+                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">v 2.0.26</p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        
+        <header class="bg-white border-b border-slate-200 p-6 flex justify-between items-center sticky top-0 z-50">
+            <div>
+                <h1 class="text-2xl font-extrabold text-brand-navy tracking-tight uppercase">Portal de Indicadores</h1>
+                <div class="flex items-center gap-2 mt-1">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Live • Cobrança e Inadimplência</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-brand-navy">Prestek Analytics</p>
+                    <p class="text-[10px] text-brand-orange font-bold uppercase">2026</p>
+                </div>
+                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
+                    <span class="material-symbols-outlined text-brand-navy">person</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-6 lg:p-10 flex-grow">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-navy flex items-center gap-4">
+                    <span class="material-symbols-outlined text-brand-navy bg-slate-50 p-2 rounded-lg">analytics</span>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Status</p>
+                        <p class="text-sm font-bold text-brand-navy">Análise Geral</p>
+                    </div>
+                </div>
+                </div>
+
+            <div class="dashboard-container">
                 <iframe 
-                    title="Indicadores BI - COBRANÇA INADIMPLENCIA E BLOQUEADOS" 
+                    title="Indicadores BI - PRESTEK" 
                     src="https://app.powerbi.com/reportEmbed?reportId=8cac4ed2-27ac-4672-9e87-512db2eea94f&autoAuth=true&ctid=782afd18-e7f0-439f-b77f-fb3d7b119a10" 
-                    frameborder="0" 
                     allowFullScreen="true">
                 </iframe>
             </div>
-        </div>
-    </main>
+        </main>
+
+        <footer class="p-6 bg-white border-t border-slate-200 text-center">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em]">
+                Prestek Telecom • Todos os direitos reservados 2026
+            </p>
+        </footer>
+    </div>
 
 </body>
 </html>
