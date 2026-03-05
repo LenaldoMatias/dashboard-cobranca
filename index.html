@@ -27,7 +27,7 @@
     </script>
 
     <style type="text/css">
-        body { font-family: 'Inter', sans-serif; background-color: #F4F6F8; }
+        body { font-family: 'Inter', sans-serif; background-color: #F4F6F8; margin: 0; }
         
         .sidebar {
             width: 260px;
@@ -35,6 +35,7 @@
             height: 100vh;
             position: fixed;
             transition: all 0.3s;
+            z-index: 100;
         }
 
         .nav-item {
@@ -127,8 +128,8 @@
             </a>
         </div>
 
-        <div class="px-6 mt-auto">
-            <div class="bg-zinc-900 rounded-lg p-3 text-center">
+        <div class="px-6 mt-auto text-center">
+            <div class="bg-zinc-900 rounded-lg p-3">
                 <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">v 2.0.26</p>
             </div>
         </div>
@@ -138,20 +139,20 @@
         
         <header class="bg-white border-b border-slate-200 p-6 flex justify-between items-center sticky top-0 z-50">
             <div>
-                <h1 class="text-2xl font-extrabold text-brand-navy tracking-tight uppercase">Portal de Indicadores</h1>
-                <div class="flex items-center gap-2 mt-1">
+                <h1 class="text-2xl font-extrabold text-brand-navy tracking-tight uppercase leading-none">Portal de Indicadores</h1>
+                <div class="flex items-center gap-2 mt-2">
                     <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Live • Cobrança e Inadimplência</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live • Cobrança e Inadimplência</span>
                 </div>
             </div>
             
             <div class="flex items-center gap-4">
-                <div class="text-right hidden sm:block">
+                <div class="text-right hidden sm:block leading-tight">
                     <p class="text-xs font-bold text-brand-navy">Prestek Analytics</p>
-                    <p class="text-[10px] text-brand-orange font-bold uppercase">2026</p>
+                    <p class="text-[10px] text-brand-orange font-bold uppercase">Public Access</p>
                 </div>
-                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
-                    <span class="material-symbols-outlined text-brand-navy">person</span>
+                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center border border-slate-200">
+                    <span class="material-symbols-outlined text-brand-navy">analytics</span>
                 </div>
             </div>
         </header>
@@ -159,19 +160,19 @@
         <main class="p-6 lg:p-10 flex-grow">
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-navy flex items-center gap-4">
-                    <span class="material-symbols-outlined text-brand-navy bg-slate-50 p-2 rounded-lg">analytics</span>
+                <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-orange flex items-center gap-4">
+                    <span class="material-symbols-outlined text-brand-orange bg-orange-50 p-2 rounded-lg">speed</span>
                     <div>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Status</p>
-                        <p class="text-sm font-bold text-brand-navy">Análise Geral</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Performance</p>
+                        <p class="text-sm font-bold text-brand-navy">Tempo Real</p>
                     </div>
                 </div>
-                </div>
+            </div>
 
             <div class="dashboard-container">
                 <iframe 
                     title="Indicadores BI - PRESTEK" 
-                    src="https://app.powerbi.com/reportEmbed?reportId=8cac4ed2-27ac-4672-9e87-512db2eea94f&autoAuth=true&ctid=782afd18-e7f0-439f-b77f-fb3d7b119a10" 
+                    src="https://app.powerbi.com/view?r=eyJrIjoiZWJlNWUzNGQtNTFjMy00NjQ2LTgxZTEtOGI2MmQwMmI4NGRlIiwidCI6Ijc4MmFmZDE4LWU3ZjAtNDM5Zi1iNzdmLWZiM2Q3YjExOWExMCJ9" 
                     allowFullScreen="true">
                 </iframe>
             </div>
