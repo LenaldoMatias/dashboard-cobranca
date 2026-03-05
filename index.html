@@ -30,6 +30,7 @@
             flex-direction: column;
             padding: 20px;
             border-right: 1px solid #333;
+            z-index: 100;
         }
 
         .logo {
@@ -60,6 +61,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
         .header-content {
@@ -107,6 +109,14 @@
             font-weight: bold;
             margin-top: 10px;
         }
+
+        /* Ajuste para telas menores */
+        @media (max-width: 768px) {
+            nav.sidebar { width: 60px; padding: 10px; }
+            .logo, .nav-item { font-size: 0; text-align: center; }
+            .nav-item::before { content: "•"; font-size: 20px; color: var(--primary-color); }
+            main { margin-left: 60px; padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -121,15 +131,18 @@
 
     <main>
         <div class="header-content">
-            <h1>Indicadores de Cobrança</h1>
-            <p style="color: #888; margin-top: -10px;">Monitoramento em tempo real dos fluxos de recebíveis</p>
-            <span class="status-badge">● LIVE - Atualizado</span>
+            <h1>Indicadores BI</h1>
+            <h2 style="font-weight: 300; color: var(--primary-color); margin-top: -10px;">Cobrança Inadimplência e Bloqueados</h2>
+            <p style="color: #888;">Monitoramento em tempo real dos fluxos de recebíveis</p>
+            <span class="status-badge">● LIVE - Autenticado</span>
         </div>
 
         <div class="dashboard-wrapper">
             <div class="responsive-iframe">
                 <iframe 
-                    src="https://app.powerbi.com/groups/me/reports/8cac4ed2-27ac-4672-9e87-512db2eea94f/2258d170895803dc04c2?language=pt-BR&experience=power-bi&clientSideAuth=0" 
+                    title="Indicadores BI - COBRANÇA INADIMPLENCIA E BLOQUEADOS" 
+                    src="https://app.powerbi.com/reportEmbed?reportId=8cac4ed2-27ac-4672-9e87-512db2eea94f&autoAuth=true&ctid=782afd18-e7f0-439f-b77f-fb3d7b119a10" 
+                    frameborder="0" 
                     allowFullScreen="true">
                 </iframe>
             </div>
