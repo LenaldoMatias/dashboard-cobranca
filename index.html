@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prestek Telecom | Inadimplência</title>
-    
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
     <script>
@@ -17,142 +17,838 @@
                         brand: {
                             orange: '#FF6600',
                             navy: '#004892',
-                            bg: '#F4F6F8',
-                        },
+                            ink: '#0F172A',
+                            soft: '#F7F9FC',
+                            line: '#E7EDF4',
+                            muted: '#64748B'
+                        }
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                },
-            },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
         };
     </script>
 
-    <style type="text/css">
-        body { font-family: 'Inter', sans-serif; background-color: #F4F6F8; margin: 0; overflow-x: hidden; }
-        
-        .sidebar {
-            width: 260px;
-            background-color: #000;
-            height: 100vh;
-            position: fixed;
-            transition: all 0.3s;
-            z-index: 100;
+    <style>
+        *{
+            box-sizing:border-box;
         }
 
-        .sidebar-logo {
-            width: 180px;
-            height: auto;
-            display: block;
+        html,body{
+            margin:0;
+            padding:0;
+            font-family:'Inter',sans-serif;
+            color:#0F172A;
+            background:#F7F9FC;
+            overflow-x:hidden;
         }
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 15px 20px;
-            color: #FF6600;
-            text-decoration: none;
-            background: #111;
-            border-left: 4px solid #FF6600;
-            font-weight: 600;
+        body{
+            background:
+                radial-gradient(circle at top left, rgba(0,72,146,0.05), transparent 24%),
+                radial-gradient(circle at bottom right, rgba(255,102,0,0.04), transparent 20%),
+                linear-gradient(180deg, #FCFDFE 0%, #F4F7FA 100%);
         }
 
-        .main-content {
-            margin-left: 260px;
-            width: calc(100% - 260px);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        .app{
+            min-height:100vh;
+            display:flex;
         }
 
-        .dashboard-container {
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 72, 146, 0.1);
-            overflow: hidden;
-            position: relative;
-            padding-bottom: 110%; /* Ajuste a altura do dash aqui */
-            height: 0;
-            width: 100%;
+        /* SIDEBAR */
+        .sidebar{
+            width:278px;
+            min-height:100vh;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+            display:flex;
+            flex-direction:column;
+            background:rgba(255,255,255,0.78);
+            backdrop-filter:blur(18px);
+            -webkit-backdrop-filter:blur(18px);
+            border-right:1px solid rgba(15,23,42,0.06);
         }
 
-        .dashboard-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; /* Ajustado para mostrar a barra de páginas */
-            border: none;
+        .sidebar::after{
+            content:"";
+            position:absolute;
+            top:26px;
+            right:0;
+            width:1px;
+            height:calc(100% - 52px);
+            background:linear-gradient(180deg, transparent, rgba(0,72,146,0.12), transparent);
         }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .sidebar-top{
+            padding:28px 22px 18px;
         }
 
-        @media (max-width: 1024px) {
-            .sidebar { width: 70px; }
-            .sidebar-logo { width: 42px; margin: auto; }
-            .nav-item span:not(.material-symbols-outlined) { display: none; }
-            .main-content { margin-left: 70px; width: calc(100% - 70px); }
+        .logo-area{
+            padding-bottom:18px;
+            border-bottom:1px solid rgba(15,23,42,0.05);
+        }
+
+        .logo-box{
+            min-height:68px;
+            display:flex;
+            align-items:center;
+        }
+
+        .sidebar-logo{
+            width:100%;
+            max-width:170px;
+            height:auto;
+            display:block;
+            object-fit:contain;
+        }
+
+        .brand-copy{
+            margin-top:16px;
+            display:flex;
+            flex-direction:column;
+            gap:7px;
+        }
+
+        .brand-kicker{
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:0.20em;
+            text-transform:uppercase;
+            color:#94A3B8;
+        }
+
+        .brand-title{
+            font-size:24px;
+            line-height:1;
+            font-weight:900;
+            letter-spacing:-0.05em;
+            color:#0F172A;
+        }
+
+        .brand-title span{
+            color:#004892;
+        }
+
+        .brand-desc{
+            font-size:13px;
+            line-height:1.6;
+            color:#64748B;
+            max-width:210px;
+        }
+
+        .sidebar-menu{
+            padding:18px 14px;
+            flex:1;
+        }
+
+        .menu-section-title{
+            padding:0 10px 12px;
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:0.20em;
+            text-transform:uppercase;
+            color:#94A3B8;
+        }
+
+        .nav-item{
+            position:relative;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            text-decoration:none;
+            padding:14px 14px;
+            border-radius:20px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.98));
+            border:1px solid rgba(15,23,42,0.05);
+            box-shadow:
+                0 10px 24px rgba(15,23,42,0.035),
+                inset 0 1px 0 rgba(255,255,255,0.88);
+            transition:all 0.25s ease;
+        }
+
+        .nav-item:hover{
+            transform:translateY(-1px);
+            box-shadow:
+                0 14px 28px rgba(15,23,42,0.045),
+                inset 0 1px 0 rgba(255,255,255,0.92);
+        }
+
+        .nav-item::before{
+            content:"";
+            position:absolute;
+            left:0;
+            top:14px;
+            bottom:14px;
+            width:4px;
+            border-radius:999px;
+            background:linear-gradient(180deg, #FF6600, #004892);
+        }
+
+        .nav-icon{
+            width:44px;
+            height:44px;
+            border-radius:15px;
+            display:grid;
+            place-items:center;
+            background:linear-gradient(135deg, rgba(255,102,0,0.11), rgba(0,72,146,0.10));
+            color:#FF6600;
+            flex-shrink:0;
+        }
+
+        .nav-text{
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+        }
+
+        .nav-title{
+            font-size:15px;
+            line-height:1.1;
+            font-weight:800;
+            color:#0F172A;
+        }
+
+        .nav-desc{
+            font-size:12px;
+            line-height:1.4;
+            color:#64748B;
+        }
+
+        .sidebar-footer{
+            padding:18px 22px 22px;
+            border-top:1px solid rgba(15,23,42,0.05);
+        }
+
+        .dash-box{
+            padding:13px 15px;
+            border-radius:18px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.90), rgba(247,249,252,0.96));
+            border:1px solid rgba(15,23,42,0.05);
+        }
+
+        .dash-name{
+            font-size:15px;
+            font-weight:900;
+            letter-spacing:-0.03em;
+            color:#0F172A;
+        }
+
+        /* MAIN */
+        .main{
+            margin-left:278px;
+            width:calc(100% - 278px);
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .topbar{
+            position:sticky;
+            top:0;
+            z-index:60;
+            padding:30px 36px 18px;
+            background:rgba(247,249,252,0.82);
+            backdrop-filter:blur(14px);
+            -webkit-backdrop-filter:blur(14px);
+            border-bottom:1px solid rgba(15,23,42,0.05);
+        }
+
+        .topbar-inner{
+            display:flex;
+            flex-direction:column;
+            gap:12px;
+        }
+
+        .top-kicker{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            width:max-content;
+            padding:8px 14px;
+            border-radius:999px;
+            background:rgba(255,255,255,0.78);
+            border:1px solid rgba(15,23,42,0.06);
+            color:#475569;
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+        }
+
+        .page-title{
+            margin:0;
+            font-size:44px;
+            line-height:0.94;
+            font-weight:900;
+            letter-spacing:-0.065em;
+            color:#0F172A;
+            text-transform:uppercase;
+            max-width:900px;
+        }
+
+        .page-title .accent{
+            color:#004892;
+        }
+
+        .page-desc{
+            margin:0;
+            font-size:14px;
+            line-height:1.7;
+            color:#64748B;
+            max-width:760px;
+            font-weight:500;
+        }
+
+        .title-divider{
+            width:120px;
+            height:3px;
+            border-radius:999px;
+            background:linear-gradient(90deg, #004892, rgba(255,102,0,0.55));
+        }
+
+        .content{
+            padding:28px 36px 34px;
+            display:flex;
+            flex-direction:column;
+            gap:22px;
+        }
+
+        /* HERO PREMIUM */
+        .hero{
+            border-radius:34px;
+            padding:34px 34px 30px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.97), rgba(247,250,253,0.99));
+            border:1px solid rgba(15,23,42,0.06);
+            box-shadow:
+                0 18px 42px rgba(15,23,42,0.045),
+                inset 0 1px 0 rgba(255,255,255,0.96);
+            position:relative;
+            overflow:hidden;
+        }
+
+        .hero::before{
+            content:"";
+            position:absolute;
+            top:-36px;
+            right:-30px;
+            width:180px;
+            height:180px;
+            border-radius:50%;
+            background:radial-gradient(circle, rgba(0,72,146,0.10), transparent 70%);
+        }
+
+        .hero::after{
+            content:"";
+            position:absolute;
+            left:-60px;
+            bottom:-70px;
+            width:180px;
+            height:180px;
+            border-radius:50%;
+            background:radial-gradient(circle, rgba(255,102,0,0.07), transparent 72%);
+        }
+
+        .hero-grid{
+            position:relative;
+            z-index:1;
+            display:grid;
+            grid-template-columns:1.3fr 0.7fr;
+            gap:24px;
+            align-items:end;
+        }
+
+        .hero-label{
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:0.18em;
+            text-transform:uppercase;
+            color:#94A3B8;
+        }
+
+        .hero-title{
+            margin:14px 0 12px;
+            font-size:36px;
+            line-height:1.02;
+            font-weight:900;
+            letter-spacing:-0.065em;
+            color:#0F172A;
+            max-width:740px;
+        }
+
+        .hero-text{
+            margin:0;
+            font-size:15px;
+            line-height:1.75;
+            color:#64748B;
+            max-width:760px;
+            font-weight:500;
+        }
+
+        .hero-points{
+            margin-top:22px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .hero-points span{
+            display:inline-flex;
+            align-items:center;
+            padding:10px 14px;
+            border-radius:999px;
+            background:rgba(255,255,255,0.92);
+            border:1px solid rgba(15,23,42,0.07);
+            color:#334155;
+            font-size:12px;
+            font-weight:700;
+            letter-spacing:0.01em;
+            box-shadow:0 8px 18px rgba(15,23,42,0.04);
+        }
+
+        .hero-side{
+            display:flex;
+            justify-content:flex-end;
+        }
+
+        .hero-side-box{
+            min-width:240px;
+            padding:22px 22px;
+            border-radius:26px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(249,250,252,0.98));
+            border:1px solid rgba(15,23,42,0.06);
+            box-shadow:
+                0 14px 30px rgba(15,23,42,0.04),
+                inset 0 1px 0 rgba(255,255,255,0.96);
+        }
+
+        .hero-side-mini{
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:0.18em;
+            text-transform:uppercase;
+            color:#94A3B8;
+        }
+
+        .hero-side-big{
+            margin-top:10px;
+            font-size:34px;
+            font-weight:900;
+            line-height:1;
+            letter-spacing:-0.06em;
+            color:#004892;
+        }
+
+        .hero-side-desc{
+            margin-top:10px;
+            font-size:13px;
+            line-height:1.65;
+            color:#64748B;
+            max-width:220px;
+        }
+
+        /* POWER BI */
+        .board{
+            border-radius:34px;
+            overflow:hidden;
+            background:rgba(255,255,255,0.84);
+            border:1px solid rgba(15,23,42,0.07);
+            box-shadow:
+                0 24px 52px rgba(15,23,42,0.075),
+                inset 0 1px 0 rgba(255,255,255,0.95);
+        }
+
+        .board-head{
+            padding:18px 24px;
+            display:grid;
+            grid-template-columns:1fr auto;
+            gap:18px;
+            align-items:center;
+            border-bottom:1px solid rgba(15,23,42,0.06);
+            background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.96));
+        }
+
+        .board-title{
+            display:flex;
+            align-items:center;
+            gap:14px;
+        }
+
+        .board-icon{
+            width:48px;
+            height:48px;
+            border-radius:16px;
+            display:grid;
+            place-items:center;
+            background:linear-gradient(135deg, rgba(255,102,0,0.12), rgba(0,72,146,0.12));
+            color:#FF6600;
+            flex-shrink:0;
+        }
+
+        .board-title h3{
+            margin:0;
+            font-size:19px;
+            font-weight:900;
+            letter-spacing:-0.03em;
+            color:#0F172A;
+        }
+
+        .board-title p{
+            margin:4px 0 0;
+            font-size:12px;
+            color:#64748B;
+            font-weight:600;
+        }
+
+        .board-tags{
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+        }
+
+        .tag{
+            padding:9px 12px;
+            border-radius:999px;
+            background:rgba(255,255,255,0.94);
+            border:1px solid rgba(15,23,42,0.06);
+            color:#475569;
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+        }
+
+        .board-frame{
+            position:relative;
+            width:100%;
+            height:0;
+            padding-bottom:67%;
+            overflow:hidden;
+            background:#fff;
+        }
+
+        .board-frame iframe{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:calc(100% + 36px);
+            border:none;
+            margin-bottom:-36px;
+        }
+
+        .footer{
+            margin-top:auto;
+            padding:18px 36px 28px;
+        }
+
+        .footer-box{
+            border-radius:20px;
+            background:rgba(255,255,255,0.78);
+            border:1px solid rgba(15,23,42,0.05);
+            padding:15px 18px;
+            text-align:center;
+            color:#94A3B8;
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:0.22em;
+            text-transform:uppercase;
+        }
+
+        .material-symbols-outlined{
+            font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;
+        }
+
+        @media (max-width:1280px){
+            .hero-grid{
+                grid-template-columns:1fr;
+            }
+
+            .hero-side{
+                justify-content:flex-start;
+            }
+        }
+
+        @media (max-width:1024px){
+            .sidebar{
+                width:92px;
+            }
+
+            .sidebar-top{
+                padding:20px 10px 16px;
+            }
+
+            .brand-copy,
+            .menu-section-title,
+            .nav-text,
+            .dash-name{
+                display:none;
+            }
+
+            .logo-box{
+                justify-content:center;
+                min-height:auto;
+            }
+
+            .sidebar-logo{
+                max-width:50px;
+            }
+
+            .sidebar-menu{
+                padding:18px 10px;
+            }
+
+            .nav-item{
+                justify-content:center;
+                padding:14px 10px;
+            }
+
+            .sidebar-footer{
+                padding:16px 10px 18px;
+            }
+
+            .dash-box{
+                min-height:48px;
+                padding:10px 8px;
+            }
+
+            .main{
+                margin-left:92px;
+                width:calc(100% - 92px);
+            }
+
+            .topbar{
+                padding:22px 18px 18px;
+            }
+
+            .content{
+                padding:18px;
+            }
+
+            .footer{
+                padding:18px 18px 24px;
+            }
+
+            .page-title{
+                font-size:30px;
+            }
+
+            .hero-title{
+                font-size:28px;
+            }
+
+            .board-head{
+                grid-template-columns:1fr;
+            }
+
+            .board-tags{
+                justify-content:flex-start;
+            }
+        }
+
+        @media (max-width:640px){
+            .app{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                position:relative;
+                width:100%;
+                min-height:auto;
+            }
+
+            .main{
+                margin-left:0;
+                width:100%;
+            }
+
+            .sidebar-top,
+            .sidebar-menu,
+            .sidebar-footer{
+                padding-left:16px;
+                padding-right:16px;
+            }
+
+            .brand-copy,
+            .menu-section-title,
+            .nav-text,
+            .dash-name{
+                display:block;
+            }
+
+            .logo-box{
+                justify-content:flex-start;
+            }
+
+            .sidebar-logo{
+                max-width:150px;
+            }
+
+            .nav-item{
+                justify-content:flex-start;
+            }
+
+            .topbar{
+                position:relative;
+            }
+
+            .page-title{
+                font-size:22px;
+            }
+
+            .hero-title{
+                font-size:22px;
+            }
+
+            .hero-side-box{
+                min-width:100%;
+            }
+
+            .board-frame{
+                padding-bottom:120%;
+            }
         }
     </style>
 </head>
+<body>
 
-<body class="text-slate-800">
+<div class="app">
 
-    <nav class="sidebar flex flex-col py-6">
-        <div class="px-6 mb-10">
-            <img src="logo.png" alt="Prestek Telecom" class="sidebar-logo">
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="logo-area">
+                <div class="logo-box">
+                    <img src="logo.png" alt="Prestek Telecom" class="sidebar-logo">
+                </div>
+
+                <div class="brand-copy">
+                    <div class="brand-kicker">Interface Corporativa</div>
+                    <div class="brand-title">Prestek <span>Dash</span></div>
+                    <div class="brand-desc">
+                        Painel visual para acompanhamento executivo e apresentação de indicadores.
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="flex flex-col flex-grow">
+        <div class="sidebar-menu">
+            <div class="menu-section-title">Painéis</div>
+
             <a href="#" class="nav-item">
-                <span class="material-symbols-outlined">payments</span>
-                <span>Inadimplência</span>
+                <div class="nav-icon">
+                    <span class="material-symbols-outlined">payments</span>
+                </div>
+
+                <div class="nav-text">
+                    <div class="nav-title">Inadimplência</div>
+                    <div class="nav-desc">Indicadores financeiros e operacionais</div>
+                </div>
             </a>
         </div>
 
-        <div class="px-6 mt-auto text-center border-t border-zinc-800 pt-6">
-            <div class="bg-zinc-900 rounded-lg p-3">
-                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-tight">
-                    Prestek Analytics<br>v 2.0.26
-                </p>
+        <div class="sidebar-footer">
+            <div class="dash-box">
+                <div class="dash-name">Prestek Dash</div>
             </div>
         </div>
-    </nav>
+    </aside>
 
-    <div class="main-content">
-        
-        <header class="bg-white border-b border-slate-200 p-6 flex justify-between items-center sticky top-0 z-50">
-            <div>
-                <h1 class="text-2xl font-extrabold text-brand-navy tracking-tight uppercase leading-none">
-                    Indicadores de Inadimplência
-                </h1>
-                <div class="flex items-center gap-2 mt-2">
-                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                        Acesso Público • Atualização Automática
-                    </span>
+    <main class="main">
+        <header class="topbar">
+            <div class="topbar-inner">
+                <div class="top-kicker">
+                    <span class="material-symbols-outlined" style="font-size:16px;">dashboard</span>
+                    Painel Executivo
                 </div>
-            </div>
-            </header>
 
-        <main class="p-4 lg:p-6 flex-grow flex flex-col">
-            <div class="dashboard-container">
-                <iframe 
-                    title="Indicadores BI - PRESTEK" 
-                    src="https://app.powerbi.com/view?r=eyJrIjoiZWJlNWUzNGQtNTFjMy00NjQ2LTgxZTEtOGI2MmQwMmI4NGRlIiwidCI6Ijc4MmFmZDE4LWU3ZjAtNDM5Zi1iNzdmLWZiM2Q3YjExOWExMCJ9&navContentPaneEnabled=true" 
-                    allowFullScreen="true">
-                </iframe>
-            </div>
-        </main>
+                <h1 class="page-title">
+                    <span class="accent">Indicadores</span> de Inadimplência
+                </h1>
 
-        <footer class="p-4 bg-white border-t border-slate-100 text-center">
-            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em]">
+                <div class="title-divider"></div>
+
+                <p class="page-desc">
+                    Acompanhamento centralizado dos principais indicadores relacionados à inadimplência da operação.
+                </p>
+            </div>
+        </header>
+
+        <section class="content">
+            <section class="hero">
+                <div class="hero-grid">
+                    <div class="hero-main-content">
+                        <div class="hero-label">Visão Geral</div>
+
+                        <h2 class="hero-title">
+                            Painel analítico de inadimplência da Prestek Telecom
+                        </h2>
+
+                        <p class="hero-text">
+                            Visualização centralizada dos indicadores financeiros relacionados à inadimplência, permitindo análise rápida de clientes, contratos e valores em aberto.
+                        </p>
+
+                        <div class="hero-points">
+                            <span>Clientes em atraso</span>
+                            <span>Contratos impactados</span>
+                            <span>Valores pendentes</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-side">
+                        <div class="hero-side-box">
+                            <div class="hero-side-mini">Painel</div>
+                            <div class="hero-side-big">Power BI</div>
+                            <div class="hero-side-desc">
+                                Integração principal com moldura mais refinada e linguagem visual mais elegante.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="board">
+                <div class="board-head">
+                    <div class="board-title">
+                        <div class="board-icon">
+                            <span class="material-symbols-outlined">bar_chart</span>
+                        </div>
+
+                        <div>
+                            <h3>Painel Integrado</h3>
+                            <p>Indicadores incorporados à interface principal</p>
+                        </div>
+                    </div>
+
+                    <div class="board-tags">
+                        <div class="tag">Prestek Telecom</div>
+                        <div class="tag">Inadimplência</div>
+                        <div class="tag">Tema Claro</div>
+                    </div>
+                </div>
+
+                <div class="board-frame">
+                    <iframe
+                        title="Indicadores BI - PRESTEK"
+                        src="https://app.powerbi.com/view?r=eyJrIjoiZWJlNWUzNGQtNTFjMy00NjQ2LTgxZTEtOGI2MmQwMmI4NGRlIiwidCI6Ijc4MmFmZDE4LWU3ZjAtNDM5Zi1iNzdmLWZiM2Q3YjExOWExMCJ9&filterPaneEnabled=true"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-box">
                 Prestek Telecom • 2026
-            </p>
+            </div>
         </footer>
-    </div>
+    </main>
+
+</div>
 
 </body>
 </html>
